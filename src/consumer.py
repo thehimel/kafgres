@@ -5,8 +5,8 @@ Module for Consumer.
 import sys
 import json
 from kafka import errors, KafkaConsumer
-from constants import CERT_FOLDER, SERVICE_URI, TOPIC_NAME, MAX_READ_TRIES
-from logger import get_logger
+from utils.constants import CERT_FOLDER, SERVICE_URI, TOPIC_NAME, MAX_READ_TRIES
+from utils.logger import get_logger
 
 logger = get_logger()
 
