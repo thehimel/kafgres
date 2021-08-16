@@ -50,6 +50,12 @@ Integrating Kafka with PostgreSQL in a DBaaS
 - Install dev requirements with `pip install -r requirements-dev.txt`.
 - Install test requirements with `pip install -r requirements-test.txt`.
 
+### Run the Producer
+
+- Run consumer in another terminal with `python src\consumer.py`.
+- Run producer in one terminal with `python src\producer.py`.
+
+
 ## Author
 
 - Himel Das
@@ -58,4 +64,11 @@ Integrating Kafka with PostgreSQL in a DBaaS
 
 ### Credits
 
- - producer.produce_messages was created by taking help from [here](https://github.com/aiven/kafka-python-fake-data-producer).
+- Producer was created by taking help from [here](https://github.com/aiven/kafka-python-fake-data-producer).
+- Consumer was created by taking help from the following sources:
+  - [Introduction To How Kafka Works And Implementation Using Python-client](https://dev.to/horiyomi/introduction-to-how-kafka-works-and-implementation-using-python-client-1ejo)
+  - [Python Examples for Testing Aiven for Apache Kafka](https://help.aiven.io/en/articles/5343895-python-examples-for-testing-aiven-for-apache-kafka)
+- Other Sources:
+  - [https://kafka-python.readthedocs.io/](https://kafka-python.readthedocs.io/en/master/usage.html)
+  - [Getting started with Aiven for Apache Kafka](https://help.aiven.io/en/articles/489572-getting-started-with-aiven-for-apache-kafka)
+  - [Getting started with Aiven Kafka](https://aiven.io/blog/getting-started-with-aiven-kafka)

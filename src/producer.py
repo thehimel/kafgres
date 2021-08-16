@@ -18,8 +18,8 @@ logger = get_logger()
 def produce_messages(cert_folder=CERT_FOLDER,
                      service_uri=SERVICE_URI,
                      topic_name=TOPIC_NAME,
-                     nr_messages=2,
-                     max_wait=2):
+                     nr_messages=-1,
+                     max_wait=10):
     """
     Produce messages to Kafka.
 
@@ -31,9 +31,9 @@ def produce_messages(cert_folder=CERT_FOLDER,
         topic_name (str): Name of the topic.
             Default: Fetched from environment variable 'KAFKA_TOPIC_NAME'.
         nr_messages(int): Number of total messages to be sent. Set a negative
-            value i.e. -1 to generate infinite number of messages. Default: 2.
+            value i.e. -1 to generate infinite number of messages. Default: -1.
         max_wait (int): Maximum waiting time in seconds between the
-            submission of two messages. Default: 2.
+            submission of two messages. Default: 10.
 
     Returns:
         None
@@ -47,7 +47,7 @@ def produce_messages(cert_folder=CERT_FOLDER,
             ssl_certfile=cert_folder+"/service.cert",
             ssl_keyfile=cert_folder+"/service.key",
             value_serializer=lambda v: json.dumps(v).encode('ascii'),
-            key_serializer=lambda v: json.dumps(v).encode('ascii')
+            key_serializer=lambda k: json.dumps(k).encode('ascii')
         )
 
     except errors.NoBrokersAvailable:
@@ -64,7 +64,7 @@ def produce_messages(cert_folder=CERT_FOLDER,
     i = 0
     while i < nr_messages:
         message, key = person()
-        logger.info("Sending %s", message)
+        logger.info("Sending: %s", message)
 
         try:
             # Sending the message to Kafka
