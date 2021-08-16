@@ -25,3 +25,22 @@ Integrating Kafka with PostgreSQL in a DBaaS
 - Click on `Advanced configuration` to define settings.
 - Finally, click on `Add topic`.
 - Once the status turns `ACTIVE`, the topic is ready to use.
+
+##  Get Started
+
+### Install and Activate Virtual Environment
+
+- Install Python 3.9 or higher.
+- Clone the repository with `git clone https://github.com/thehimel/kafgres`
+- Go to the directory with `cd kafgres`
+- Create a virtual environment.
+  - Linux: `python3.9 -m venv venv`
+  - Windows: `python -m venv venv`
+- Activate the virtual environment.
+  - Linux: `source venv/bin/activate`
+  - Windows: `venv\Scripts\activate`
+
+### Install the Requirements
+
+- Install dev requirements with `pip install -r requirements-dev.txt`.
+- Install test requirements with `pip install -r requirements-test.txt`.

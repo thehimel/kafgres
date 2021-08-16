@@ -1,1 +1,4 @@
 black
+uuid
+faker
+kafka-python
