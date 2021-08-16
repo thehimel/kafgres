@@ -1,10 +1,15 @@
+"""
+Module for Producer.
+"""
+
 import logging
-from decouple import config
-from data import person
+import sys
+import random
 import json
 import time
-import random
-from kafka import KafkaProducer
+from decouple import config
+from kafka import errors, KafkaProducer
+from data import person
 
 
 CERT_FOLDER = config("KAFKA_CERT_FOLDER")
@@ -39,37 +44,52 @@ def produce_messages(cert_folder=CERT_FOLDER,
         None
     """
 
-    producer = KafkaProducer(
-        bootstrap_servers=service_uri,
-        security_protocol="SSL",
-        ssl_cafile=cert_folder+"/ca.pem",
-        ssl_certfile=cert_folder+"/service.cert",
-        ssl_keyfile=cert_folder+"/service.key",
-        value_serializer=lambda v: json.dumps(v).encode('ascii'),
-        key_serializer=lambda v: json.dumps(v).encode('ascii')
-    )
+    try:
+        producer = KafkaProducer(
+            bootstrap_servers=service_uri,
+            security_protocol="SSL",
+            ssl_cafile=cert_folder+"/ca.pem",
+            ssl_certfile=cert_folder+"/service.cert",
+            ssl_keyfile=cert_folder+"/service.key",
+            value_serializer=lambda v: json.dumps(v).encode('ascii'),
+            key_serializer=lambda v: json.dumps(v).encode('ascii')
+        )
+
+    except errors.NoBrokersAvailable:
+        logging.error("Producer setup failed as no broker is available.")
+        sys.exit(1)
+
+    except Exception as exp:  # pylint: disable=broad-except
+        logging.error("Producer setup failed due to %s.", exp)
+        sys.exit(1)
 
     if nr_messages <= 0:
         nr_messages = float('inf')
 
     i = 0
-    while i < nr_messages:
+    while i <= nr_messages:
         message, key = person()
-        logging.info(f"Sending: {message}")
+        logging.info("Sending: %s", message)
 
-        # Sending the message to Kafka
-        producer.send(topic_name, key=key, value=message)
+        try:
+            # Sending the message to Kafka
+            producer.send(topic_name, key=key, value=message)
 
-        # Sleeping time
-        sleep_time = random.randint(0, max_wait * 10)/10
-        logging.info(f"Sleeping for {str(sleep_time)}s")
-        time.sleep(sleep_time)
+            # Sleeping time
+            sleep_time = random.randint(0, max_wait * 10)/10
+            logging.info("Sleeping for %ss", str(sleep_time))
+            time.sleep(sleep_time)
 
-        # Force flushing of all messages
-        if (i % 100) == 0:
-            producer.flush()
-        i = i + 1
+            # Force flushing of all messages
+            if (i % 100) == 0:
+                producer.flush()
+            i = i + 1
+
+        except Exception as exp:  # pylint: disable=broad-except
+            logging.error("Could not send message due to %s", exp)
+
     producer.flush()
 
 
-produce_messages()
+if __name__ == "__main__":
+    produce_messages()

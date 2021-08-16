@@ -1,3 +1,7 @@
+"""
+Module for generating person data with Faker.
+"""
+
 import uuid
 from faker import Faker
 
@@ -14,7 +18,7 @@ def unique_id():
 
 def person():
     """
-    Generate data for a person with faker.
+    Generate data for a person with Faker.
 
     Returns:
         tuple
