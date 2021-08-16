@@ -1,0 +1,5 @@
+black
+uuid
+faker
+kafka-python
+python-decouple
