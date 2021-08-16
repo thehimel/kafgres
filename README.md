@@ -26,6 +26,11 @@ Integrating Kafka with PostgreSQL in a DBaaS
 - Finally, click on `Add topic`.
 - Once the status turns `ACTIVE`, the topic is ready to use.
 
+### Enable Kafka REST API
+
+- Select the service.
+- On the `Overview` tab, enable `Kafka REST API (Karapace)`.
+
 ##  Get Started
 
 ### Install and Activate Virtual Environment
@@ -44,3 +49,13 @@ Integrating Kafka with PostgreSQL in a DBaaS
 
 - Install dev requirements with `pip install -r requirements-dev.txt`.
 - Install test requirements with `pip install -r requirements-test.txt`.
+
+## Author
+
+- Himel Das
+
+## Acknowledgement
+
+### Credits
+
+ - producer.produce_messages was created by taking help from [here](https://github.com/aiven/kafka-python-fake-data-producer).

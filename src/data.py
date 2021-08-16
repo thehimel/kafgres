@@ -2,28 +2,33 @@ import uuid
 from faker import Faker
 
 
-def unique_id() -> uuid:
+def unique_id():
     """
     Get a universally unique identifier (UUID).
 
-    :rtype: uuid
+    Returns:
+        uuid
     """
     return uuid.uuid4()
 
 
-def person() -> dict:
+def person():
     """
     Generate data for a person with faker.
 
-    :rtype: dict
+    Returns:
+        tuple
     """
+
     fake = Faker()
 
-    data = {
+    message = {
         "id": str(unique_id()),
         "name": fake.unique.name(),
         "address": fake.address(),
         "phone_number": fake.unique.phone_number(),
         "vaccinated": fake.unique.boolean()
     }
-    return data
+
+    key = {'id': message["id"]}
+    return message, key
