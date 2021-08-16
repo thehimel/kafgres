@@ -2,22 +2,20 @@
 Module for Producer.
 """
 
-import logging
 import sys
 import random
 import json
 import time
 from decouple import config
 from kafka import errors, KafkaProducer
+from logger import get_logger
 from data import person
 
 
 CERT_FOLDER = config("KAFKA_CERT_FOLDER")
 SERVICE_URI = config("KAFKA_SERVICE_URI")
 TOPIC_NAME = config("KAFKA_TOPIC_NAME")
-
-# Configure logging to print in stdout.
-logging.basicConfig(level=logging.INFO)
+logger = get_logger()
 
 
 def produce_messages(cert_folder=CERT_FOLDER,
@@ -56,20 +54,20 @@ def produce_messages(cert_folder=CERT_FOLDER,
         )
 
     except errors.NoBrokersAvailable:
-        logging.error("Producer setup failed as no broker is available.")
+        logger.error("Producer setup failed as no broker is available.")
         sys.exit(1)
 
     except Exception as exp:  # pylint: disable=broad-except
-        logging.error("Producer setup failed due to %s.", exp)
+        logger.error("Producer setup failed due to %s.", exp)
         sys.exit(1)
 
     if nr_messages <= 0:
         nr_messages = float('inf')
 
     i = 0
-    while i <= nr_messages:
+    while i < nr_messages:
         message, key = person()
-        logging.info("Sending: %s", message)
+        logger.info("Sending: %s", message)
 
         try:
             # Sending the message to Kafka
@@ -77,7 +75,7 @@ def produce_messages(cert_folder=CERT_FOLDER,
 
             # Sleeping time
             sleep_time = random.randint(0, max_wait * 10)/10
-            logging.info("Sleeping for %ss", str(sleep_time))
+            logger.info("Sleeping for %ss", str(sleep_time))
             time.sleep(sleep_time)
 
             # Force flushing of all messages
@@ -86,7 +84,7 @@ def produce_messages(cert_folder=CERT_FOLDER,
             i = i + 1
 
         except Exception as exp:  # pylint: disable=broad-except
-            logging.error("Could not send message due to %s", exp)
+            logger.error("Could not send message due to %s", exp)
 
     producer.flush()
 
