@@ -6,15 +6,12 @@ import sys
 import random
 import json
 import time
-from decouple import config
+
 from kafka import errors, KafkaProducer
-from logger import get_logger
 from data import person
+from constants import CERT_FOLDER, SERVICE_URI, TOPIC_NAME
+from logger import get_logger
 
-
-CERT_FOLDER = config("KAFKA_CERT_FOLDER")
-SERVICE_URI = config("KAFKA_SERVICE_URI")
-TOPIC_NAME = config("KAFKA_TOPIC_NAME")
 logger = get_logger()
 
 
@@ -67,7 +64,7 @@ def produce_messages(cert_folder=CERT_FOLDER,
     i = 0
     while i < nr_messages:
         message, key = person()
-        logger.info("Sending: %s", message)
+        logger.info("Sending %s", message)
 
         try:
             # Sending the message to Kafka

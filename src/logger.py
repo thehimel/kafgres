@@ -3,6 +3,7 @@ Module to generate the logger.
 """
 
 import logging
+from constants import PROJECT_NAME
 
 
 def get_logger():
@@ -14,7 +15,7 @@ def get_logger():
     """
 
     # create logger
-    logger = logging.getLogger('app')
+    logger = logging.getLogger(PROJECT_NAME)
     logger.setLevel(logging.DEBUG)
 
     # create console handler and set level to debug
