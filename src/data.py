@@ -31,8 +31,8 @@ def person():
         "name": fake.unique.name(),
         "address": fake.address(),
         "phone_number": fake.unique.phone_number(),
-        "vaccinated": fake.unique.boolean()
+        "vaccinated": fake.unique.boolean(),
     }
 
-    key = {'id': message["id"]}
+    key = {"id": message["id"]}
     return message, key

@@ -29,10 +29,10 @@ def get_producer(cert_folder, service_uri):
         bootstrap_servers=service_uri,
         security_protocol="SSL",
         ssl_cafile=cert_folder + "/ca.pem",
-        ssl_certfile=cert_folder + "/service.cert",
         ssl_keyfile=cert_folder + "/service.key",
-        value_serializer=lambda v: json.dumps(v).encode('ascii'),
-        key_serializer=lambda k: json.dumps(k).encode('ascii')
+        ssl_certfile=cert_folder + "/service.cert",
+        value_serializer=lambda v: json.dumps(v).encode("ascii"),
+        key_serializer=lambda k: json.dumps(k).encode("ascii"),
     )
 
 
@@ -60,7 +60,7 @@ def send_message(producer, topic_name, max_wait, index):
 
     # Sleeping time
     sleep_time = random.randint(0, max_wait * 10) / 10
-    logger.info("Sleeping for %ss", str(sleep_time))
+    logger.info("Sleeping: %ss", str(sleep_time))
     time.sleep(sleep_time)
 
     # Force flushing of all messages
@@ -71,11 +71,13 @@ def send_message(producer, topic_name, max_wait, index):
     return producer, index
 
 
-def produce_messages(cert_folder=CERT_FOLDER,
-                     service_uri=SERVICE_URI,
-                     topic_name=TOPIC_NAME,
-                     nr_messages=-1,
-                     max_wait=10):
+def produce_messages(
+    cert_folder=CERT_FOLDER,
+    service_uri=SERVICE_URI,
+    topic_name=TOPIC_NAME,
+    nr_messages=-1,
+    max_wait=10,
+):
     """
     Produce messages to Kafka.
 
@@ -107,7 +109,7 @@ def produce_messages(cert_folder=CERT_FOLDER,
         sys.exit(1)
 
     if nr_messages <= 0:
-        nr_messages = float('inf')
+        nr_messages = float("inf")
 
     index = 0
     while index < nr_messages:
@@ -126,4 +128,3 @@ if __name__ == "__main__":
     except KeyboardInterrupt:
         logger.info("Producer stopped")
         sys.exit(0)
-

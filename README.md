@@ -2,15 +2,17 @@
 
 Integrating Kafka with PostgreSQL in a DBaaS
 
-## Set up a Kafka Service in `Aiven`
+## Set up a Service in `Aiven`
+
+Use the following steps to set up a `Kafka` and `PostgreSQL` service in `Aiven`.
 
 - Go to [Console](https://console.aiven.io/)
 - Click on `Create a new service`. And follow the steps.
-- Select `Kafka` and `Version Number` in `Select your service` section.
-- Select the cloud provide from the list consisting AWS, GCP, MS Azure, DigitalOcean, UpCloud, etc.
+- Choose a service (i.e. `Kafka`, `PostgreSQL`, etc.) and `Version Number` in `Select your service` section.
+- Select the cloud provide from the options consisting AWS, GCP, MS Azure, DigitalOcean, UpCloud, etc.
 - Select a region.
 - Select a plan according to your required CPU, RAM, Storage, Backup Capability, Nodes, etc.
-- Provide the service a name. Note: The service name cannot be changed later.
+- Provide the service a name. *Note: The service name cannot be changed later.*
 - Finally, click on `Create Service`.
 - Once the status turns `Running`, the service is ready to use.
 
@@ -33,6 +35,20 @@ Integrating Kafka with PostgreSQL in a DBaaS
 
 ##  Get Started
 
+### Install Required System Packages (Linux Only)
+
+- Update the local package index.
+- 
+```sh
+sudo apt-get update
+```
+
+- To install `psycopg2` in `Linux` we need to install the following packages.
+
+```sh
+sudo apt-get install libpq-dev python-dev python3-dev
+```
+
 ### Install and Activate Virtual Environment
 
 - Install Python 3.9 or higher.
@@ -51,11 +67,45 @@ Integrating Kafka with PostgreSQL in a DBaaS
 - Install pep8 requirements with `pip install -r requirements-pep8.txt`.
 - Install test requirements with `pip install -r requirements-test.txt`.
 
+### Define the Environment Variables
+
+#### Set the following environment variables in the system.
+
+- KAFKA_CERT_FOLDER
+  - Path to the folder where `ca.pem`, `service.cert`, and `service.key` are stored downloaded from the DBaaS console.
+- KAFKA_SERVICE_URI
+  - Kafka Service URI consisting of `host[:port]` fetched from DBaaS Console.
+- KAFKA_TOPIC_NAME
+  - Name of the topic.
+- PG_SERVICE_URI
+  - PostgreSQL Service URI fetched from DBaaS Console.
+- PG_TABLE_NAME
+  - PostgreSQL table name (Arbitrary).
+
+##### Tip
+
+- For simplicity create a file `kafgres/.env` with the following content.
+
+```dotenv
+KAFKA_CERT_FOLDER=/path/to/cert/folder
+KAFKA_SERVICE_URI=host:port
+KAFKA_TOPIC_NAME=topic-name
+PG_SERVICE_URI=postgres://host:port/db-name?sslmode=require
+PG_TABLE_NAME=table-name
+```
+
+- **This recommendation is only for testing purpose. Do not push the `.env` file to git.**
+- `.env` is included in the `.gitignore` so that this file is not pushed to git repository.
+
+
 ### Run the Producer
 
 - Run consumer in another terminal with `python src\consumer.py`.
 - Run producer in one terminal with `python src\producer.py`.
 
+### How to Stop
+
+- Press `Ctrl+C` to exit a script.
 
 ## Author
 
