@@ -2,15 +2,17 @@
 
 Integrating Kafka with PostgreSQL in a DBaaS
 
-## Set up a Kafka Service in `Aiven`
+## Set up a Service in `Aiven`
+
+Use the following steps to set up a `Kafka` and `PostgreSQL` service in `Aiven`.
 
 - Go to [Console](https://console.aiven.io/)
 - Click on `Create a new service`. And follow the steps.
-- Select `Kafka` and `Version Number` in `Select your service` section.
-- Select the cloud provide from the list consisting AWS, GCP, MS Azure, DigitalOcean, UpCloud, etc.
+- Choose a service (i.e. `Kafka`, `PostgreSQL`, etc.) and `Version Number` in `Select your service` section.
+- Select the cloud provide from the options consisting AWS, GCP, MS Azure, DigitalOcean, UpCloud, etc.
 - Select a region.
 - Select a plan according to your required CPU, RAM, Storage, Backup Capability, Nodes, etc.
-- Provide the service a name. Note: The service name cannot be changed later.
+- Provide the service a name. *Note: The service name cannot be changed later.*
 - Finally, click on `Create Service`.
 - Once the status turns `Running`, the service is ready to use.
 
