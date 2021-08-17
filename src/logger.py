@@ -6,7 +6,7 @@ import logging
 
 
 def get_logger():
-    """"
+    """ "
     Get the logger.
 
     Returns:
@@ -23,7 +23,9 @@ def get_logger():
     console_handler.setLevel(logging.DEBUG)
 
     # Create formatter
-    formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+    formatter = logging.Formatter(
+        "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+    )
 
     # Add formatter to console_handler
     console_handler.setFormatter(formatter)

@@ -35,11 +35,11 @@ def get_consumer(cert_folder, service_uri, topic_name):
         group_id="kafka-group-1",
         bootstrap_servers=service_uri,
         security_protocol="SSL",
-        ssl_cafile=cert_folder+"/ca.pem",
-        ssl_certfile=cert_folder+"/service.cert",
-        ssl_keyfile=cert_folder+"/service.key",
-        value_deserializer=lambda v: json.loads(v.decode('ascii')),
-        key_deserializer=lambda v: json.loads(v.decode('ascii')),
+        ssl_cafile=cert_folder + "/ca.pem",
+        ssl_certfile=cert_folder + "/service.cert",
+        ssl_keyfile=cert_folder + "/service.key",
+        value_deserializer=lambda v: json.loads(v.decode("ascii")),
+        key_deserializer=lambda v: json.loads(v.decode("ascii")),
     )
 
 
@@ -54,18 +54,15 @@ def read_message(message):
         None
     """
 
-    logger.info("Received: %s:%d:%d: key=%s value=%s" % (
-        message.topic,
-        message.partition,
-        message.offset,
-        message.key,
-        message.value
-    ))
+    logger.info(
+        "Received: %s:%d:%d: key=%s value=%s"
+        % (message.topic, message.partition, message.offset, message.key, message.value)
+    )
 
 
-def consume_message(cert_folder=CERT_FOLDER,
-                    service_uri=SERVICE_URI,
-                    topic_name=TOPIC_NAME):
+def consume_message(
+    cert_folder=CERT_FOLDER, service_uri=SERVICE_URI, topic_name=TOPIC_NAME
+):
     """
     Consumer messages from Kafka.
 
@@ -83,9 +80,8 @@ def consume_message(cert_folder=CERT_FOLDER,
 
     try:
         consumer = get_consumer(
-            cert_folder=cert_folder,
-            service_uri=service_uri,
-            topic_name=topic_name)
+            cert_folder=cert_folder, service_uri=service_uri, topic_name=topic_name
+        )
 
     except errors.NoBrokersAvailable:
         logger.error("Producer setup failed as no broker is available.")
