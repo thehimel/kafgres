@@ -35,6 +35,20 @@ Use the following steps to set up a `Kafka` and `PostgreSQL` service in `Aiven`.
 
 ##  Get Started
 
+### Install Required System Packages (Linux Only)
+
+- Update the local package index.
+- 
+```sh
+sudo apt-get update
+```
+
+- To install `psycopg2` in `Linux` we need to install the following packages.
+
+```sh
+sudo apt-get install libpq-dev python-dev python3-dev
+```
+
 ### Install and Activate Virtual Environment
 
 - Install Python 3.9 or higher.
