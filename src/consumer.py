@@ -22,11 +22,9 @@ def get_consumer(cert_folder, service_uri, topic_name):
         KafkaConsumer
     """
 
-    """
-    auto_offset_reset="earliest" to read the old messages.
-    Important Note: client_id and group_id are arbitrary and
-        required to avoid reading the messages again.
-    """
+    # auto_offset_reset="earliest" to read the old messages.
+    # Important Note: client_id and group_id are arbitrary and
+    #   required to avoid reading the messages again.
 
     return KafkaConsumer(
         topic_name,
@@ -56,7 +54,11 @@ def read_message(message):
 
     logger.info(
         "Received: %s:%d:%d: key=%s value=%s"
-        % (message.topic, message.partition, message.offset, message.key, message.value)
+        % (message.topic,
+           message.partition,
+           message.offset,
+           message.key,
+           message.value)
     )
 
 
