@@ -81,6 +81,9 @@ KAFKA_TOPIC_NAME=topic-name
 - Run consumer in another terminal with `python src\consumer.py`.
 - Run producer in one terminal with `python src\producer.py`.
 
+### How to Stop
+
+- Press `Ctrl+C` to exit a script.
 
 ## Author
 
