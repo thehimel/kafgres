@@ -32,3 +32,6 @@ def get_logger():
     logger.addHandler(console_handler)
 
     return logger
+
+
+logger = get_logger()
