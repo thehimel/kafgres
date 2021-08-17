@@ -123,3 +123,4 @@ PG_TABLE_NAME=table-name
   - [https://kafka-python.readthedocs.io/](https://kafka-python.readthedocs.io/en/master/usage.html)
   - [Getting started with Aiven for Apache Kafka](https://help.aiven.io/en/articles/489572-getting-started-with-aiven-for-apache-kafka)
   - [Getting started with Aiven Kafka](https://aiven.io/blog/getting-started-with-aiven-kafka)
+  - [Getting started with sqlalchemy](https://riptutorial.com/sqlalchemy)
