@@ -29,8 +29,8 @@ def get_producer(cert_folder, service_uri):
         bootstrap_servers=service_uri,
         security_protocol="SSL",
         ssl_cafile=cert_folder + "/ca.pem",
-        ssl_certfile=cert_folder + "/service.cert",
         ssl_keyfile=cert_folder + "/service.key",
+        ssl_certfile=cert_folder + "/service.cert",
         value_serializer=lambda v: json.dumps(v).encode("ascii"),
         key_serializer=lambda k: json.dumps(k).encode("ascii"),
     )
