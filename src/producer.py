@@ -8,11 +8,9 @@ import json
 import time
 
 from kafka import errors, KafkaProducer
-from utils.data import person
-from utils.constants import CERT_FOLDER, SERVICE_URI, TOPIC_NAME
-from utils.logger import get_logger
-
-logger = get_logger()
+from data import person
+from constants import CERT_FOLDER, SERVICE_URI, TOPIC_NAME
+from logger import logger
 
 
 def get_producer(cert_folder, service_uri):
@@ -123,4 +121,9 @@ def produce_messages(cert_folder=CERT_FOLDER,
 
 
 if __name__ == "__main__":
-    produce_messages()
+    try:
+        produce_messages()
+    except KeyboardInterrupt:
+        logger.info("Producer stopped")
+        sys.exit(0)
+

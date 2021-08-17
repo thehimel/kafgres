@@ -48,6 +48,7 @@ Integrating Kafka with PostgreSQL in a DBaaS
 ### Install the Requirements
 
 - Install dev requirements with `pip install -r requirements-dev.txt`.
+- Install pep8 requirements with `pip install -r requirements-pep8.txt`.
 - Install test requirements with `pip install -r requirements-test.txt`.
 
 ### Run the Producer

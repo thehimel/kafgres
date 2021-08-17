@@ -5,8 +5,8 @@ Module for Consumer.
 import sys
 import json
 from kafka import errors, KafkaConsumer
-from utils.constants import CERT_FOLDER, SERVICE_URI, TOPIC_NAME, MAX_READ_TRIES
-from utils.logger import get_logger
+from constants import CERT_FOLDER, SERVICE_URI, TOPIC_NAME, MAX_READ_TRIES
+from logger import logger
 
 
 def get_consumer(cert_folder, service_uri, topic_name):
@@ -43,12 +43,11 @@ def get_consumer(cert_folder, service_uri, topic_name):
     )
 
 
-def read_message(logger, message):
+def read_message(message):
     """
     Read the message.
 
     Arguments:
-        logger (logging.Logger): The logger.
         message (kafka.consumer.fetcher.ConsumerRecord): Message to read.
 
     Returns:
@@ -81,7 +80,6 @@ def consume_message(cert_folder=CERT_FOLDER,
     Returns:
         None
     """
-    logger = get_logger()
 
     try:
         consumer = get_consumer(
@@ -101,7 +99,7 @@ def consume_message(cert_folder=CERT_FOLDER,
 
     for message in consumer:
         try:
-            read_message(logger=logger, message=message)
+            read_message(message=message)
 
         except Exception as error:  # pylint: disable=broad-except
             tries += 1
@@ -113,4 +111,8 @@ def consume_message(cert_folder=CERT_FOLDER,
 
 
 if __name__ == "__main__":
-    consume_message()
+    try:
+        consume_message()
+    except KeyboardInterrupt:
+        logger.info("Consumer stopped")
+        sys.exit(0)
