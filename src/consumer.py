@@ -8,7 +8,60 @@ from kafka import errors, KafkaConsumer
 from utils.constants import CERT_FOLDER, SERVICE_URI, TOPIC_NAME, MAX_READ_TRIES
 from utils.logger import get_logger
 
-logger = get_logger()
+
+def get_consumer(cert_folder, service_uri, topic_name):
+    """
+    Get the consumer.
+
+    Arguments:
+        cert_folder (str): Path to the directory where keys are stored.
+        service_uri (str): 'host[:port]' string of the Kafka service.
+        topic_name (str): Path to the directory where keys are stored.
+
+    Returns:
+        KafkaConsumer
+    """
+
+    """
+    auto_offset_reset="earliest" to read the old messages.
+    Important Note: client_id and group_id are arbitrary and
+        required to avoid reading the messages again.
+    """
+
+    return KafkaConsumer(
+        topic_name,
+        auto_offset_reset="earliest",
+        client_id="kafka-client-1",
+        group_id="kafka-group-1",
+        bootstrap_servers=service_uri,
+        security_protocol="SSL",
+        ssl_cafile=cert_folder+"/ca.pem",
+        ssl_certfile=cert_folder+"/service.cert",
+        ssl_keyfile=cert_folder+"/service.key",
+        value_deserializer=lambda v: json.loads(v.decode('ascii')),
+        key_deserializer=lambda v: json.loads(v.decode('ascii')),
+    )
+
+
+def read_message(logger, message):
+    """
+    Read the message.
+
+    Arguments:
+        logger (logging.Logger): The logger.
+        message (kafka.consumer.fetcher.ConsumerRecord): Message to read.
+
+    Returns:
+        None
+    """
+
+    logger.info("Received: %s:%d:%d: key=%s value=%s" % (
+        message.topic,
+        message.partition,
+        message.offset,
+        message.key,
+        message.value
+    ))
 
 
 def consume_message(cert_folder=CERT_FOLDER,
@@ -28,27 +81,13 @@ def consume_message(cert_folder=CERT_FOLDER,
     Returns:
         None
     """
+    logger = get_logger()
 
     try:
-        """
-        auto_offset_reset="earliest" to read the old messages.
-        Important Note: client_id and group_id are arbitrary and
-            required to avoid reading the messages again.
-        """
-
-        consumer = KafkaConsumer(
-            topic_name,
-            auto_offset_reset="earliest",
-            client_id="kafka-client-1",
-            group_id="kafka-group-1",
-            bootstrap_servers=service_uri,
-            security_protocol="SSL",
-            ssl_cafile=cert_folder+"/ca.pem",
-            ssl_certfile=cert_folder+"/service.cert",
-            ssl_keyfile=cert_folder+"/service.key",
-            value_deserializer=lambda v: json.loads(v.decode('ascii')),
-            key_deserializer=lambda v: json.loads(v.decode('ascii')),
-        )
+        consumer = get_consumer(
+            cert_folder=cert_folder,
+            service_uri=service_uri,
+            topic_name=topic_name)
 
     except errors.NoBrokersAvailable:
         logger.error("Producer setup failed as no broker is available.")
@@ -62,13 +101,7 @@ def consume_message(cert_folder=CERT_FOLDER,
 
     for message in consumer:
         try:
-            logger.info("Received: %s:%d:%d: key=%s value=%s" % (
-                message.topic,
-                message.partition,
-                message.offset,
-                message.key,
-                message.value
-            ))
+            read_message(logger=logger, message=message)
 
         except Exception as error:  # pylint: disable=broad-except
             tries += 1
