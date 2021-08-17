@@ -53,12 +53,12 @@ def read_message(message):
     """
 
     logger.info(
-        "Received: %s:%d:%d: key=%s value=%s"
-        % (message.topic,
-           message.partition,
-           message.offset,
-           message.key,
-           message.value)
+        "Received: %s:%d:%d: key=%s value=%s",
+        message.topic,
+        message.partition,
+        message.offset,
+        message.key,
+        message.value,
     )
 
 
