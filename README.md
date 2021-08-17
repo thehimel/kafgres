@@ -51,6 +51,31 @@ Integrating Kafka with PostgreSQL in a DBaaS
 - Install pep8 requirements with `pip install -r requirements-pep8.txt`.
 - Install test requirements with `pip install -r requirements-test.txt`.
 
+### Define the Environment Variables
+
+#### Set the following environment variables in the system.
+
+- KAFKA_CERT_FOLDER
+  - Path to the folder where `ca.pem`, `service.cert`, and `service.key` are stored downloaded from the DBaaS console.
+- KAFKA_SERVICE_URI
+  - Service URI consisting of `host[:port]` fetched from DBaaS Console.
+- KAFKA_TOPIC_NAME
+  - Name of the topic.
+
+##### Tip
+
+- For simplicity create a file `kafgres/.env` with the following content.
+
+```dotenv
+KAFKA_CERT_FOLDER=/path/to/cert/folder
+KAFKA_SERVICE_URI=host.cloud.com:PORT
+KAFKA_TOPIC_NAME=topic-name
+```
+
+- **This recommendation is only for testing purpose. Do not push the `.env` file to git.**
+- `.env` is included in the `.gitignore` so that this file is not pushed to git repository.
+
+
 ### Run the Producer
 
 - Run consumer in another terminal with `python src\consumer.py`.

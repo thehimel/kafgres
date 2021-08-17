@@ -126,4 +126,3 @@ if __name__ == "__main__":
     except KeyboardInterrupt:
         logger.info("Producer stopped")
         sys.exit(0)
-
