@@ -74,9 +74,13 @@ sudo apt-get install libpq-dev python-dev python3-dev
 - KAFKA_CERT_FOLDER
   - Path to the folder where `ca.pem`, `service.cert`, and `service.key` are stored downloaded from the DBaaS console.
 - KAFKA_SERVICE_URI
-  - Service URI consisting of `host[:port]` fetched from DBaaS Console.
+  - Kafka Service URI consisting of `host[:port]` fetched from DBaaS Console.
 - KAFKA_TOPIC_NAME
   - Name of the topic.
+- PG_SERVICE_URI
+  - PostgreSQL Service URI fetched from DBaaS Console.
+- PG_TABLE_NAME
+  - PostgreSQL table name (Arbitrary).
 
 ##### Tip
 
@@ -84,8 +88,10 @@ sudo apt-get install libpq-dev python-dev python3-dev
 
 ```dotenv
 KAFKA_CERT_FOLDER=/path/to/cert/folder
-KAFKA_SERVICE_URI=host.cloud.com:PORT
+KAFKA_SERVICE_URI=host:port
 KAFKA_TOPIC_NAME=topic-name
+PG_SERVICE_URI=postgres://host:port/db-name?sslmode=require
+PG_TABLE_NAME=table-name
 ```
 
 - **This recommendation is only for testing purpose. Do not push the `.env` file to git.**
