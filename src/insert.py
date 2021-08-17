@@ -1,3 +1,7 @@
+"""
+Module to insert data to the PostgreSQL server.
+"""
+
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.exc import SQLAlchemyError
@@ -48,7 +52,7 @@ def insert_data(engine, data):
     success = True
     try:
         session.commit()
-        logger.info(f"Insert: %s", data.__repr__())
+        logger.info(f"Inserted: %s", data.__repr__())
 
     except SQLAlchemyError as error:  # pylint: disable=broad-except
         logger.error("Commit to database server failed due to %s.", error)
@@ -64,18 +68,33 @@ def insert_data(engine, data):
     return success
 
 
-if __name__ == "__main__":
-    db_engine = init_db(PG_SERVICE_URI)
-    person_data, key = person()
-
+def send_data(engine, data):
+    """
+    Send data to PostgreSQL server
+    
+    Arguments:
+        engine (sqlalchemy.engine.base.Engine): SQLAlchemy Engine object.
+        data (dict): Data to send.
+    """
     # Convert the id to uuid type.
-    person_data['id'] = uuid.UUID(person_data['id'])
+    data['id'] = uuid.UUID(data['id'])
 
     # Create an object.
-    entry = Vaccination(id=person_data['id'],
-                        name=person_data['name'],
-                        address=person_data['address'],
-                        phone_number=person_data['phone_number'],
-                        vaccinated=person_data['vaccinated'])
+    entry = Vaccination(id=data['id'],
+                        name=data['name'],
+                        address=data['address'],
+                        phone_number=data['phone_number'],
+                        vaccinated=data['vaccinated']
+                        )
 
-    insert_data(engine=db_engine, data=entry)
+    insert_data(engine=engine, data=entry)
+
+
+if __name__ == "__main__":
+    """
+    Send one data generated with Faker one each standalone run.
+    """
+
+    db_engine = init_db(PG_SERVICE_URI)
+    person_data, key = person()
+    send_data(engine=db_engine, data=person_data)
