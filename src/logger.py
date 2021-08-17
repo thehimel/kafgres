@@ -13,25 +13,25 @@ def get_logger():
         logger
     """
 
-    # create logger
+    # Create logger
     project_name = "kafgres"
-    logger = logging.getLogger(project_name)
-    logger.setLevel(logging.DEBUG)
+    the_logger = logging.getLogger(project_name)
+    the_logger.setLevel(logging.DEBUG)
 
-    # create console handler and set level to debug
+    # Create console handler and set level to debug
     console_handler = logging.StreamHandler()
     console_handler.setLevel(logging.DEBUG)
 
-    # create formatter
+    # Create formatter
     formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
-    # add formatter to console_handler
+    # Add formatter to console_handler
     console_handler.setFormatter(formatter)
 
-    # add console_handler to logger
-    logger.addHandler(console_handler)
+    # Add console_handler to logger
+    the_logger.addHandler(console_handler)
 
-    return logger
+    return the_logger
 
 
 logger = get_logger()

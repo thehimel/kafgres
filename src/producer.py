@@ -60,7 +60,7 @@ def send_message(producer, topic_name, max_wait, index):
 
     # Sleeping time
     sleep_time = random.randint(0, max_wait * 10) / 10
-    logger.info("Sleeping for %ss", str(sleep_time))
+    logger.info("Sleeping: %ss", str(sleep_time))
     time.sleep(sleep_time)
 
     # Force flushing of all messages
