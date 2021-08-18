@@ -2,6 +2,11 @@
 
 Integrating Kafka with PostgreSQL in a DBaaS
 
+## System Design
+
+- The producer sends data to Kafka server (broker).
+- The consumer retrieves data from Kafka server and inserts data to PostgreSQL server.
+
 ## Set up a Service in `Aiven`
 
 Use the following steps to set up a `Kafka` and `PostgreSQL` service in `Aiven`.
@@ -64,8 +69,8 @@ sudo apt-get install libpq-dev python-dev python3-dev
 ### Install the Requirements
 
 - Install dev requirements with `pip install -r requirements-dev.txt`.
-- Install pep8 requirements with `pip install -r requirements-pep8.txt`.
 - Install test requirements with `pip install -r requirements-test.txt`.
+- Optional: Install pep8 requirements with `pip install -r requirements-pep8.txt`.
 
 ### Define the Environment Variables
 
@@ -98,10 +103,14 @@ PG_TABLE_NAME=table-name
 - `.env` is included in the `.gitignore` so that this file is not pushed to git repository.
 
 
-### Run the Producer
+### Run the Consumer and Producer.
 
-- Run consumer in another terminal with `python src\consumer.py`.
-- Run producer in one terminal with `python src\producer.py`.
+- Run consumer in another terminal with `python src/manage.py consumer`.
+- Run producer in one terminal with `python src/manage.py producer`.
+
+### Test the Insertion
+
+- Test the insertion that inserts a data from faker with `python src/manage.py insert`.
 
 ### How to Stop
 
