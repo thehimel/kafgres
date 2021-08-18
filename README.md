@@ -1,11 +1,32 @@
 # `kafgres`
 
-Integrating Kafka with PostgreSQL in a DBaaS
+## Description
+
+This application provides the following functionalities:
+
+- Send data stream by a producer to Kafka broker.
+- Retrieve data stream through a consumer from Kafka broker.
+- Insert the fetched data by the consumer to a PostgreSQL database service.
+
+## Terminologies
+
+- PostgreSQL is a powerful, open source object-relational database system.
+  - Source: [www.postgresql.org](https://www.postgresql.org/)
+- Apache Kafka is an open-source distributed event streaming platform used by thousands of companies
+for high-performance data pipelines, streaming analytics, data integration, and mission-critical applications.
+  - Source: [kafka.apache.org](https://kafka.apache.org/)
+- Kafka Producer is a client that publishes records to the Kafka cluster.
+  - Source: [kafka.apache.org](https://kafka.apache.org/26/javadoc/index.html?org/apache/kafka/clients/producer/KafkaProducer.html)
+- Kafka Consumer is a client that consumes records from a Kafka cluster.
+  - Source: [kafka.apache.org](https://kafka.apache.org/26/javadoc/index.html?org/apache/kafka/clients/consumer/KafkaConsumer.html)
 
 ## System Design
-
 - The producer sends data to Kafka server (broker).
 - The consumer retrieves data from Kafka server and inserts data to PostgreSQL server.
+
+## Python Requirement
+
+- Python 3.9 or higher.
 
 ## Set up a Service in `Aiven`
 
@@ -102,19 +123,35 @@ PG_TABLE_NAME=table-name
 - **This recommendation is only for testing purpose. Do not push the `.env` file to git.**
 - `.env` is included in the `.gitignore` so that this file is not pushed to git repository.
 
+## Run the Application
 
-### Run the Consumer and Producer.
+### Run the Consumer and Producer
 
 - Run consumer in another terminal with `python src/manage.py consumer`.
 - Run producer in one terminal with `python src/manage.py producer`.
 
-### Test the Insertion
+### Insert Data to PostgreSQL
 
 - Test the insertion that inserts a data from faker with `python src/manage.py insert`.
 
-### How to Stop
+## Stop the Application
 
 - Press `Ctrl+C` to exit a script.
+
+## Testing
+
+This project uses `pytest` for testing.
+
+- Go to the project directory with `cd kafgres`.
+- Run tests with one of the following commands:
+  - `pytest src`
+  - `pytest`
+
+### Integration Test
+
+- One integration test is added to test the data submission by the producer,
+data retrieval by the consumer, data insertion to PostgreSQL server,
+and data fetch from PostgreSQL server.
 
 ## Author
 
