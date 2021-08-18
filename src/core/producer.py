@@ -8,7 +8,7 @@ import json
 import time
 
 from kafka import errors, KafkaProducer
-from src.core.utilities.constants import CERT_FOLDER, SERVICE_URI, TOPIC_NAME
+from src.core.utilities.constants import CERT_FOLDER, SERVICE_URI, TOPIC_NAME, MAX_WAIT
 from src.core.utilities.data import person
 from src.core.utilities.logger import logger
 
@@ -45,22 +45,24 @@ def get_producer(cert_folder, service_uri):
         return None
 
 
-def send_message(producer, topic_name, max_wait, index):
+def send_message(producer, topic_name, data, max_wait, index=0):
     """
     Send a message.
 
     Arguments:
         producer (KafkaProducer): The producer.
         topic_name (str): Name of the topic.
+        data (tuple): Message and key packed in a tuple.
         max_wait (int): Maximum waiting time in seconds between the
             submission of two messages.
-        index (int): Index number of the messages to be sent.
+        index (int, optional): Index number of the messages to be sent.
+            Default: 0.
 
     Returns:
         tuple[KafkaProducer, int]
     """
 
-    message, key = person()
+    message, key = data
     logger.info("Index: %d", index)
     logger.info("Sending: %s", message)
 
@@ -85,7 +87,7 @@ def produce_messages(
     service_uri=SERVICE_URI,
     topic_name=TOPIC_NAME,
     nr_messages=-1,
-    max_wait=10,
+    max_wait=MAX_WAIT,
 ):
     """
     Produce messages to Kafka.
@@ -117,7 +119,13 @@ def produce_messages(
     index = 0
     while index < nr_messages:
         try:
-            producer, index = send_message(producer, topic_name, max_wait, index)
+            producer, index = send_message(
+                producer=producer,
+                topic_name=topic_name,
+                data=person(),
+                max_wait=max_wait,
+                index=index,
+            )
 
         except Exception as error:  # pylint: disable=broad-except
             logger.error("Could not send message due to %s", error)

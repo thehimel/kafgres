@@ -38,16 +38,12 @@ def consumer():
 
 
 if __name__ == "__main__":
-    tasks = {
-        "producer": producer,
-        "consumer": consumer,
-        "insert": insert
-    }
+    tasks = {"producer": producer, "consumer": consumer, "insert": insert}
 
     msgs = [
         "Allowed option: argument, consumer, or insert.",
         "Only one argument must be passed.",
-        "Invalid argument."
+        "Invalid argument.",
     ]
 
     # If the no argument is passed.
