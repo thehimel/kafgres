@@ -1,6 +1,6 @@
 """Test the logger."""
 import logging
-from src.utils.logger import logger
+from src.core.utils.logger import logger
 
 
 def test_logger():

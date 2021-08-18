@@ -8,9 +8,9 @@ import json
 import time
 
 from kafka import errors, KafkaProducer
-from utils.constants import CERT_FOLDER, SERVICE_URI, TOPIC_NAME
-from utils.data import person
-from utils.logger import logger
+from src.core.utils.constants import CERT_FOLDER, SERVICE_URI, TOPIC_NAME
+from src.core.utils.data import person
+from src.core.utils.logger import logger
 
 
 def get_producer(cert_folder, service_uri):

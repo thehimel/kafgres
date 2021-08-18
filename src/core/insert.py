@@ -6,10 +6,10 @@ import uuid
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.exc import SQLAlchemyError
-from utils.constants import PG_SERVICE_URI
-from utils.data import person
-from utils.logger import logger
-from models import Base, Vaccination
+from src.core.utils.constants import PG_SERVICE_URI
+from src.core.utils.data import person
+from src.core.utils.logger import logger
+from src.core.models import Base, Vaccination
 
 
 def init_db(service_uri):

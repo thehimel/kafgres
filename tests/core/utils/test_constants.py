@@ -2,7 +2,7 @@
 
 from os.path import exists
 
-from src.utils.constants import (
+from src.core.utils.constants import (
     CERT_FOLDER,
     SERVICE_URI,
     TOPIC_NAME,
