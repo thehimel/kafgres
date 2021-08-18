@@ -1,7 +1,7 @@
 """Module to test data package"""
 
 import uuid
-from src.core.utils.data import unique_id, person
+from src.core.utilities.data import unique_id, person
 
 
 def test_unique_id():

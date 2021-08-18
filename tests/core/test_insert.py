@@ -2,7 +2,7 @@
 
 from sqlalchemy.engine.base import Engine
 from src.core.insert import init_db
-from src.core.utils.constants import PG_SERVICE_URI
+from src.core.utilities.constants import PG_SERVICE_URI
 
 
 def test_init_db():

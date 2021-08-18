@@ -5,15 +5,14 @@ Module for Consumer.
 import sys
 import json
 from kafka import errors, KafkaConsumer
-from src.core.utils.constants import (
+from src.core.utilities.constants import (
     CERT_FOLDER,
     SERVICE_URI,
     TOPIC_NAME,
     MAX_READ_TRIES,
-    PG_SERVICE_URI,
 )
-from src.core.utils.logger import logger
-from src.core.insert import init_db, send_data
+from src.core.utilities.logger import logger
+from src.core.insert import send_data
 
 
 def get_consumer(cert_folder, service_uri, topic_name):
@@ -124,12 +123,3 @@ def consume_message(
             if data is not None:
                 # Send the data to PostgreSQL server.
                 send_data(engine=engine, data=data)
-
-
-if __name__ == "__main__":
-    try:
-        db_engine = init_db(PG_SERVICE_URI)
-        consume_message(db_engine)
-    except KeyboardInterrupt:
-        logger.info("Consumer stopped")
-        sys.exit(0)

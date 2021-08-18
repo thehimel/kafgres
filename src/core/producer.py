@@ -8,9 +8,9 @@ import json
 import time
 
 from kafka import errors, KafkaProducer
-from src.core.utils.constants import CERT_FOLDER, SERVICE_URI, TOPIC_NAME
-from src.core.utils.data import person
-from src.core.utils.logger import logger
+from src.core.utilities.constants import CERT_FOLDER, SERVICE_URI, TOPIC_NAME
+from src.core.utilities.data import person
+from src.core.utilities.logger import logger
 
 
 def get_producer(cert_folder, service_uri):
@@ -120,11 +120,3 @@ def produce_messages(
             logger.error("Could not send message due to %s", error)
 
     producer.flush()
-
-
-if __name__ == "__main__":
-    try:
-        produce_messages()
-    except KeyboardInterrupt:
-        logger.info("Producer stopped")
-        sys.exit(0)

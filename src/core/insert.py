@@ -6,9 +6,7 @@ import uuid
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.exc import SQLAlchemyError
-from src.core.utils.constants import PG_SERVICE_URI
-from src.core.utils.data import person
-from src.core.utils.logger import logger
+from src.core.utilities.logger import logger
 from src.core.models import Base, Vaccination
 
 
@@ -89,9 +87,3 @@ def send_data(engine, data):
     )
 
     insert_data(engine=engine, data=entry)
-
-
-if __name__ == "__main__":
-    db_engine = init_db(PG_SERVICE_URI)
-    person_data, key = person()
-    send_data(engine=db_engine, data=person_data)

@@ -6,7 +6,7 @@ import uuid
 from sqlalchemy import Column, String, Boolean
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.dialects.postgresql import UUID
-from src.core.utils.constants import TABLE_NAME
+from src.core.utilities.constants import TABLE_NAME
 
 Base = declarative_base()
 
