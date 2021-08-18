@@ -6,8 +6,12 @@ import sys
 import json
 from kafka import errors, KafkaConsumer
 from utils.constants import (
-    CERT_FOLDER, SERVICE_URI, TOPIC_NAME,
-    MAX_READ_TRIES, PG_SERVICE_URI)
+    CERT_FOLDER,
+    SERVICE_URI,
+    TOPIC_NAME,
+    MAX_READ_TRIES,
+    PG_SERVICE_URI,
+)
 from utils.logger import logger
 from insert import init_db, send_data
 
@@ -68,8 +72,7 @@ def read_message(message):
 
 
 def consume_message(
-        engine, cert_folder=CERT_FOLDER,
-        service_uri=SERVICE_URI, topic_name=TOPIC_NAME
+    engine, cert_folder=CERT_FOLDER, service_uri=SERVICE_URI, topic_name=TOPIC_NAME
 ):
     """
     Consumer messages from Kafka.

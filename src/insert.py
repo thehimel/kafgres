@@ -77,15 +77,16 @@ def send_data(engine, data):
         data (dict): Data to send.
     """
     # Convert the id to uuid type.
-    data['id'] = uuid.UUID(data['id'])
+    data["id"] = uuid.UUID(data["id"])
 
     # Create an object.
-    entry = Vaccination(id=data['id'],
-                        name=data['name'],
-                        address=data['address'],
-                        phone_number=data['phone_number'],
-                        vaccinated=data['vaccinated']
-                        )
+    entry = Vaccination(
+        id=data["id"],
+        name=data["name"],
+        address=data["address"],
+        phone_number=data["phone_number"],
+        vaccinated=data["vaccinated"],
+    )
 
     insert_data(engine=engine, data=entry)
 

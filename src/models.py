@@ -35,7 +35,7 @@ class Vaccination(Base):
             "name": self.name,
             "address": self.address,
             "phone_number": self.phone_number,
-            "vaccinated": self.vaccinated
+            "vaccinated": self.vaccinated,
         }
 
     def __str__(self):
@@ -43,5 +43,7 @@ class Vaccination(Base):
         String representation of the object.
         """
 
-        return f"id: {self.id}, name: {self.name}, phone_number: " + \
-            f"{self.phone_number}, vaccinated: {self.vaccinated}"
+        return (
+            f"id: {self.id}, name: {self.name}, phone_number: "
+            + f"{self.phone_number}, vaccinated: {self.vaccinated}"
+        )
