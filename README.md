@@ -153,6 +153,11 @@ This project uses `pytest` for testing.
 data retrieval by the consumer, data insertion to PostgreSQL server,
 and data fetch from PostgreSQL server.
 
+### Happy Path and Sad Path Testing
+
+- Happy paths have been added.
+- Sad paths will be added in the future.
+
 ## Author
 
 - Himel Das
