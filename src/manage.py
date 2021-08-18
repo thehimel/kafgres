@@ -25,11 +25,7 @@ def producer():
     Run the producer.
     """
 
-    try:
-        produce_messages()
-    except KeyboardInterrupt:
-        print("\nProducer stopped")
-        sys.exit(0)
+    produce_messages()
 
 
 def consumer():
@@ -37,17 +33,13 @@ def consumer():
     Run the consumer.
     """
 
-    try:
-        db_engine = init_db(PG_SERVICE_URI)
-        consume_message(db_engine)
-    except KeyboardInterrupt:
-        print("\nConsumer stopped")
-        sys.exit(0)
+    db_engine = init_db(PG_SERVICE_URI)
+    consume_message(db_engine)
 
 
 if __name__ == "__main__":
     tasks = {
-        "producer": produce_messages(),
+        "producer": producer,
         "consumer": consumer,
         "insert": insert
     }
@@ -69,4 +61,8 @@ if __name__ == "__main__":
             print(msgs[2], msgs[0])
         else:
             # Run the task.
-            tasks[task]()
+            try:
+                tasks[task]()
+            except KeyboardInterrupt:
+                print(f"{task.capitalize()} stopped")
+                sys.exit(0)
