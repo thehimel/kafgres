@@ -15,7 +15,12 @@ from src.core.utilities.logger import logger
 from src.core.insert import insert_data
 
 
-def get_consumer(cert_folder, service_uri, topic_name):
+def get_consumer(
+        cert_folder,
+        service_uri,
+        topic_name,
+        consumer_timeout_ms=float('inf')
+):
     """
     Get the consumer.
 
@@ -23,6 +28,9 @@ def get_consumer(cert_folder, service_uri, topic_name):
         cert_folder (str): Path to the directory where keys are stored.
         service_uri (str): 'host[:port]' string of the Kafka service.
         topic_name (str): Path to the directory where keys are stored.
+        consumer_timeout_ms (float): Stop consumer if no messages is
+            received within the defined time in milliseconds.
+            Default: forever [float(‘inf’)].
 
     Returns:
         KafkaConsumer
@@ -44,6 +52,7 @@ def get_consumer(cert_folder, service_uri, topic_name):
             ssl_keyfile=cert_folder + "/service.key",
             value_deserializer=lambda v: json.loads(v.decode("ascii")),
             key_deserializer=lambda v: json.loads(v.decode("ascii")),
+            consumer_timeout_ms=consumer_timeout_ms
         )
 
     except errors.NoBrokersAvailable:

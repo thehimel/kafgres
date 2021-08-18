@@ -70,9 +70,10 @@ def send_message(producer, topic_name, data, max_wait, index=0):
     producer.send(topic_name, key=key, value=message)
 
     # Sleeping time
-    sleep_time = random.randint(0, max_wait * 10) / 10
-    logger.info("Sleeping: %ss", str(sleep_time))
-    time.sleep(sleep_time)
+    if max_wait:
+        sleep_time = random.randint(0, max_wait * 10) / 10
+        logger.info("Sleeping: %ss", str(sleep_time))
+        time.sleep(sleep_time)
 
     # Force flushing of all messages
     if (index % 100) == 0:
