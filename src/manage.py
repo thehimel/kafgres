@@ -64,5 +64,5 @@ if __name__ == "__main__":
             try:
                 tasks[task]()
             except KeyboardInterrupt:
-                print(f"{task.capitalize()} stopped")
+                print(f"\n{task.capitalize()} stopped")
                 sys.exit(0)
