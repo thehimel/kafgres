@@ -25,15 +25,24 @@ def get_producer(cert_folder, service_uri):
         KafkaProducer
     """
 
-    return KafkaProducer(
-        bootstrap_servers=service_uri,
-        security_protocol="SSL",
-        ssl_cafile=cert_folder + "/ca.pem",
-        ssl_keyfile=cert_folder + "/service.key",
-        ssl_certfile=cert_folder + "/service.cert",
-        value_serializer=lambda v: json.dumps(v).encode("ascii"),
-        key_serializer=lambda k: json.dumps(k).encode("ascii"),
-    )
+    try:
+        return KafkaProducer(
+            bootstrap_servers=service_uri,
+            security_protocol="SSL",
+            ssl_cafile=cert_folder + "/ca.pem",
+            ssl_keyfile=cert_folder + "/service.key",
+            ssl_certfile=cert_folder + "/service.cert",
+            value_serializer=lambda v: json.dumps(v).encode("ascii"),
+            key_serializer=lambda k: json.dumps(k).encode("ascii"),
+        )
+
+    except errors.NoBrokersAvailable:
+        logger.error("Producer setup failed as no broker is available.")
+        return None
+
+    except Exception as error:  # pylint: disable=broad-except
+        logger.error("Producer setup failed due to %s.", error)
+        return None
 
 
 def send_message(producer, topic_name, max_wait, index):
@@ -97,15 +106,9 @@ def produce_messages(
         None
     """
 
-    try:
-        producer = get_producer(cert_folder=cert_folder, service_uri=service_uri)
+    producer = get_producer(cert_folder=cert_folder, service_uri=service_uri)
 
-    except errors.NoBrokersAvailable:
-        logger.error("Producer setup failed as no broker is available.")
-        sys.exit(1)
-
-    except Exception as error:  # pylint: disable=broad-except
-        logger.error("Producer setup failed due to %s.", error)
+    if producer is None:
         sys.exit(1)
 
     if nr_messages <= 0:
