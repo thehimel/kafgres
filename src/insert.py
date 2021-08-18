@@ -2,14 +2,14 @@
 Module to insert data to the PostgreSQL server.
 """
 
+import uuid
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.exc import SQLAlchemyError
-import uuid
-from constants import PG_SERVICE_URI
-from data import person
+from utils.constants import PG_SERVICE_URI
+from utils.data import person
+from utils.logger import logger
 from models import Base, Vaccination
-from logger import logger
 
 
 def init_db(service_uri):
@@ -36,7 +36,7 @@ def insert_data(engine, data):
 
     Arguments:
         engine (sqlalchemy.engine.base.Engine): SQLAlchemy Engine object.
-        data (object): SQLAlchemy data object.
+        data (models.Vaccination): SQLAlchemy data object.
 
     Returns:
         bool
@@ -52,7 +52,7 @@ def insert_data(engine, data):
     success = True
     try:
         session.commit()
-        logger.info(f"Inserted: %s", data.__repr__())
+        logger.info("Inserted: %s", data.repr_dict)
 
     except SQLAlchemyError as error:  # pylint: disable=broad-except
         logger.error("Commit to database server failed due to %s.", error)
@@ -71,7 +71,7 @@ def insert_data(engine, data):
 def send_data(engine, data):
     """
     Send data to PostgreSQL server
-    
+
     Arguments:
         engine (sqlalchemy.engine.base.Engine): SQLAlchemy Engine object.
         data (dict): Data to send.
@@ -91,10 +91,6 @@ def send_data(engine, data):
 
 
 if __name__ == "__main__":
-    """
-    Send one data generated with Faker one each standalone run.
-    """
-
     db_engine = init_db(PG_SERVICE_URI)
     person_data, key = person()
     send_data(engine=db_engine, data=person_data)

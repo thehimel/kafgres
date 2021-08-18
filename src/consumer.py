@@ -5,10 +5,11 @@ Module for Consumer.
 import sys
 import json
 from kafka import errors, KafkaConsumer
-from logger import logger
+from utils.constants import (
+    CERT_FOLDER, SERVICE_URI, TOPIC_NAME,
+    MAX_READ_TRIES, PG_SERVICE_URI)
+from utils.logger import logger
 from insert import init_db, send_data
-from constants import (CERT_FOLDER, SERVICE_URI, TOPIC_NAME,
-                       MAX_READ_TRIES, PG_SERVICE_URI)
 
 
 def get_consumer(cert_folder, service_uri, topic_name):

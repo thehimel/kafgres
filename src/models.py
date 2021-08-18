@@ -1,11 +1,12 @@
 """
 Module to store the database models.
 """
+
 import uuid
 from sqlalchemy import Column, String, Boolean
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.dialects.postgresql import UUID
-from constants import TABLE_NAME
+from utils.constants import TABLE_NAME
 
 Base = declarative_base()
 
@@ -23,7 +24,12 @@ class Vaccination(Base):
     phone_number = Column(String)
     vaccinated = Column(Boolean)
 
-    def __repr__(self):
+    @property
+    def repr_dict(self):
+        """
+        Dictionary representation of the object.
+        """
+
         return {
             "id": self.id,
             "name": self.name,
@@ -33,6 +39,9 @@ class Vaccination(Base):
         }
 
     def __str__(self):
+        """
+        String representation of the object.
+        """
+
         return f"id: {self.id}, name: {self.name}, phone_number: " + \
             f"{self.phone_number}, vaccinated: {self.vaccinated}"
-
