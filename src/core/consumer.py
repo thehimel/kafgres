@@ -16,10 +16,7 @@ from src.core.insert import insert_data
 
 
 def get_consumer(
-        cert_folder,
-        service_uri,
-        topic_name,
-        consumer_timeout_ms=float('inf')
+    cert_folder, service_uri, topic_name, consumer_timeout_ms=float("inf")
 ):
     """
     Get the consumer.
@@ -52,7 +49,7 @@ def get_consumer(
             ssl_keyfile=cert_folder + "/service.key",
             value_deserializer=lambda v: json.loads(v.decode("ascii")),
             key_deserializer=lambda v: json.loads(v.decode("ascii")),
-            consumer_timeout_ms=consumer_timeout_ms
+            consumer_timeout_ms=consumer_timeout_ms,
         )
 
     except errors.NoBrokersAvailable:

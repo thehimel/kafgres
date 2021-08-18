@@ -21,7 +21,7 @@ def test_core():
         cert_folder=CERT_FOLDER,
         service_uri=SERVICE_URI,
         topic_name=TOPIC_NAME,
-        consumer_timeout_ms=5000
+        consumer_timeout_ms=5000,
     )
 
     # Consumer will terminate if no message is received within 5000 ms.
