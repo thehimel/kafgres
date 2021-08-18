@@ -5,4 +5,4 @@ kafka-python
 python-decouple
 psycopg2-binary
 sqlalchemy
-argparse
+

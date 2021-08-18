@@ -12,7 +12,7 @@ from src.core.utilities.constants import (
     MAX_READ_TRIES,
 )
 from src.core.utilities.logger import logger
-from src.core.insert import send_data
+from src.core.insert import insert_data
 
 
 def get_consumer(cert_folder, service_uri, topic_name):
@@ -122,4 +122,4 @@ def consume_message(
         finally:
             if data is not None:
                 # Send the data to PostgreSQL server.
-                send_data(engine=engine, data=data)
+                insert_data(engine=engine, data=data)

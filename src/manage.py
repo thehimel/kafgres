@@ -3,7 +3,7 @@ Starting point of the application.
 """
 
 import sys
-from core.insert import init_db, send_data
+from core.insert import init_db, insert_data
 from core.utilities.constants import PG_SERVICE_URI
 from core.utilities.data import person
 from core.producer import produce_messages
@@ -17,7 +17,7 @@ def insert():
 
     db_engine = init_db(PG_SERVICE_URI)
     person_data = person()[0]
-    send_data(engine=db_engine, data=person_data)
+    insert_data(engine=db_engine, data=person_data)
 
 
 def producer():
