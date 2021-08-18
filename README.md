@@ -64,7 +64,7 @@ Use the following steps to set up a `Kafka` and `PostgreSQL` service in `Aiven`.
 ### Install Required System Packages (Linux Only)
 
 - Update the local package index.
-- 
+
 ```sh
 sudo apt-get update
 ```
