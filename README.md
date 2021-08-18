@@ -100,7 +100,7 @@ sudo apt-get install libpq-dev python-dev python3-dev
 - KAFKA_CERT_FOLDER
   - Path to the folder where `ca.pem`, `service.cert`, and `service.key` are stored downloaded from the DBaaS console.
 - KAFKA_SERVICE_URI
-  - Kafka Service URI consisting of `host[:port]` fetched from DBaaS Console.
+  - Kafka Service URI consisting of `host[:port]` fetched from the DBaaS Console.
 - KAFKA_TOPIC_NAME
   - Name of the topic.
 - PG_SERVICE_URI
