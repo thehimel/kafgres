@@ -24,6 +24,22 @@ for high-performance data pipelines, streaming analytics, data integration, and 
 - The producer sends data to Kafka server (broker).
 - The consumer retrieves data from Kafka server and inserts data to PostgreSQL server.
 
+```mermaid
+graph TB
+  P --> B
+  B --> C
+  C --> PG
+  subgraph "DBaaS"
+  B[Kafka Broker]
+  PG[PostgreSQL Server]
+  end
+
+  subgraph "Application"
+  P[Producer]
+  C[Consumer]
+end
+```
+
 ## Python Requirement
 
 - Python 3.9 or higher.
