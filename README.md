@@ -1,5 +1,32 @@
 # `kafgres`
 
+## Table of Contents
+
+- [Description](#description)
+- [Terminologies](#terminologies)
+- [System Design](#system-design)
+- [Python Requirement](#python-requirement)
+- [Set up a Service in `Aiven`](#set-up-a-service-in--aiven-)
+  * [Create a Kafka Topic](#create-a-kafka-topic)
+  * [Enable Kafka REST API](#enable-kafka-rest-api)
+- [Get Started](#get-started)
+  * [Install Required System Packages (Linux Only)](#install-required-system-packages--linux-only-)
+  * [Install and Activate Virtual Environment](#install-and-activate-virtual-environment)
+  * [Install the Requirements](#install-the-requirements)
+  * [Define the Environment Variables](#define-the-environment-variables)
+    + [Set the following environment variables in the system.](#set-the-following-environment-variables-in-the-system)
+      - [Tip](#tip)
+- [Run the Application](#run-the-application)
+  * [Run the Consumer and Producer](#run-the-consumer-and-producer)
+  * [Insert Data to PostgreSQL](#insert-data-to-postgresql)
+- [Stop the Application](#stop-the-application)
+- [Testing](#testing)
+  * [Integration Test](#integration-test)
+  * [Happy Path and Sad Path Testing](#happy-path-and-sad-path-testing)
+- [Author](#author)
+- [Acknowledgement](#acknowledgement)
+  * [Credits](#credits)
+
 ## Description
 
 This application provides the following functionalities:
