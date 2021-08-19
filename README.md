@@ -70,8 +70,6 @@ end
 
 ![System Design](img/system_design.png)
 
-- Diagram generated with [mermaid-live-editor](https://mermaid-js.github.io/mermaid-live-editor).
-
 ## Python Requirement
 
 - Python 3.9 or higher.
@@ -223,3 +221,5 @@ and data fetch from PostgreSQL server.
   - [Getting started with Aiven for Apache Kafka](https://help.aiven.io/en/articles/489572-getting-started-with-aiven-for-apache-kafka)
   - [Getting started with Aiven Kafka](https://aiven.io/blog/getting-started-with-aiven-kafka)
   - [Getting started with sqlalchemy](https://riptutorial.com/sqlalchemy)
+- Table of Contents Generated with [markdown-toc](https://ecotrust-canada.github.io/markdown-toc)
+- System Design Diagram generated with [mermaid-live-editor](https://mermaid-js.github.io/mermaid-live-editor).
