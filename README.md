@@ -20,6 +20,7 @@
 - [Run the Application](#run-the-application)
   * [Run the Consumer and Producer](#run-the-consumer-and-producer)
   * [Insert Data to PostgreSQL](#insert-data-to-postgresql)
+  * [Observation](#observation)
 - [Stop the Application](#stop-the-application)
 - [Testing](#testing)
   * [Integration Test](#integration-test)
