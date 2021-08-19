@@ -13,8 +13,8 @@ from src.core.utilities.constants import (
 
 def test_constants():
     """Test the constants"""
-    assert exists(CERT_FOLDER)
     assert isinstance(CERT_FOLDER, str)
+    assert exists(CERT_FOLDER)
     assert isinstance(SERVICE_URI, str)
     assert isinstance(TOPIC_NAME, str)
     assert isinstance(PG_SERVICE_URI, str)
