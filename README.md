@@ -105,6 +105,16 @@ Use the following steps to set up a `Kafka` and `PostgreSQL` service in `Aiven`.
 - Select the service.
 - On the `Overview` tab, enable `Kafka REST API (Karapace)`.
 
+### Download Kafka Service Credentials
+
+- Select the service.
+- Go to `Overview` | `Connection information` | `Kafka`.
+- Download the following files:
+  - Access Key (`service.key`)
+  - Access Certificate (`service.cert`)
+  - CA Certificate (`ca.pem`)
+- Store these files in a directory.
+
 ##  Get Started
 
 ### Install Required System Packages (Linux Only)
@@ -144,7 +154,8 @@ sudo apt-get install libpq-dev python-dev python3-dev
 #### Set the following environment variables in the system.
 
 - KAFKA_CERT_FOLDER
-  - Path to the folder where `ca.pem`, `service.cert`, and `service.key` are stored downloaded from the DBaaS console.
+  - Path to the folder where `ca.pem`, `service.cert`, and `service.key` are stored downloaded from the DBaaS console
+in [this step](#download-kafka-service-credentials)
 - KAFKA_SERVICE_URI
   - Kafka Service URI consisting of `host[:port]` fetched from the DBaaS Console.
 - KAFKA_TOPIC_NAME
