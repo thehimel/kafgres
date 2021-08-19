@@ -24,6 +24,7 @@ for high-performance data pipelines, streaming analytics, data integration, and 
 - The producer sends data to Kafka server (broker).
 - The consumer retrieves data from Kafka server and inserts data to PostgreSQL server.
 
+
 ```mermaid
 graph TB
   P --> B
@@ -39,6 +40,8 @@ graph TB
   C[Consumer]
 end
 ```
+
+![System Design](img/system_design.png)
 
 ## Python Requirement
 
