@@ -73,7 +73,7 @@ end
 
 ## Python Requirement
 
-- Python 3.9 or higher
+- Python 3.9 or higher.
 
 ## Set up a Service in - Aiven
 
