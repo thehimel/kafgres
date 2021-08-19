@@ -212,7 +212,7 @@ and data fetch from PostgreSQL server.
 
 ### Credits
 
-- Producer was created by taking help from [kafka-python-fake-data-producer](https://github.com/aiven/kafka-python-fake-data-producer).
+- Producer was created by taking help from [kafka-python-fake-data-producer](https://github.com/aiven/kafka-python-fake-data-producer)
 - Consumer was created by taking help from the following sources:
   - [Introduction To How Kafka Works And Implementation Using Python-client](https://dev.to/horiyomi/introduction-to-how-kafka-works-and-implementation-using-python-client-1ejo)
   - [Python Examples for Testing Aiven for Apache Kafka](https://help.aiven.io/en/articles/5343895-python-examples-for-testing-aiven-for-apache-kafka)
@@ -222,4 +222,4 @@ and data fetch from PostgreSQL server.
   - [Getting started with Aiven Kafka](https://aiven.io/blog/getting-started-with-aiven-kafka)
   - [Getting started with sqlalchemy](https://riptutorial.com/sqlalchemy)
 - Table of Contents Generated with [markdown-toc](https://ecotrust-canada.github.io/markdown-toc)
-- System Design Diagram generated with [mermaid-live-editor](https://mermaid-js.github.io/mermaid-live-editor).
+- System Design Diagram generated with [mermaid-live-editor](https://mermaid-js.github.io/mermaid-live-editor)
