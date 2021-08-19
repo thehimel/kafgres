@@ -43,7 +43,7 @@ end
 
 ![System Design](img/system_design.png)
 
-- Diagram generated with [mermaid-live-editor](https://mermaid-js.github.io/mermaid-live-editor)
+- Diagram generated with [mermaid-live-editor](https://mermaid-js.github.io/mermaid-live-editor).
 
 ## Python Requirement
 
