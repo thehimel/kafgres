@@ -6,11 +6,12 @@
 - [Terminologies](#terminologies)
 - [System Design](#system-design)
 - [Python Requirement](#python-requirement)
-- [Set up a Service in `Aiven`](#set-up-a-service-in--aiven-)
+- [Set up a Service in - Aiven](#set-up-a-service-in---aiven)
   * [Create a Kafka Topic](#create-a-kafka-topic)
   * [Enable Kafka REST API](#enable-kafka-rest-api)
+  * [Download Kafka Service Credentials](#download-kafka-service-credentials)
 - [Get Started](#get-started)
-  * [Install Required System Packages (Linux Only)](#install-required-system-packages--linux-only-)
+  * [Install Required System Packages - Linux Only](#install-required-system-packages---linux-only)
   * [Install and Activate Virtual Environment](#install-and-activate-virtual-environment)
   * [Install the Requirements](#install-the-requirements)
   * [Define the Environment Variables](#define-the-environment-variables)
@@ -74,7 +75,7 @@ end
 
 - Python 3.9 or higher.
 
-## Set up a Service in `Aiven`
+## Set up a Service in - Aiven
 
 Use the following steps to set up a `Kafka` and `PostgreSQL` service in `Aiven`.
 
@@ -117,7 +118,7 @@ Use the following steps to set up a `Kafka` and `PostgreSQL` service in `Aiven`.
 
 ##  Get Started
 
-### Install Required System Packages (Linux Only)
+### Install Required System Packages - Linux Only
 
 - Update the local package index.
 
