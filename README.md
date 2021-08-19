@@ -202,7 +202,7 @@ This project uses `pytest` for testing.
 
 - Go to the project directory with `cd kafgres`.
 - Run tests with one of the following commands:
-  - `pytest src`
+  - `pytest tests`
   - `pytest`
 
 ### Integration Test
