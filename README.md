@@ -77,7 +77,7 @@ end
 
 ## Set up a Service in - Aiven
 
-Use the following steps to set up a `Kafka` and `PostgreSQL` service in `Aiven`.
+Use the following steps to set up a `Kafka` and `PostgreSQL` services in `Aiven`.
 
 - Go to [Console](https://console.aiven.io/)
 - Click on `Create a new service`. And follow the steps.
@@ -229,7 +229,7 @@ and data fetch from PostgreSQL server.
   - [Introduction To How Kafka Works And Implementation Using Python-client](https://dev.to/horiyomi/introduction-to-how-kafka-works-and-implementation-using-python-client-1ejo)
   - [Python Examples for Testing Aiven for Apache Kafka](https://help.aiven.io/en/articles/5343895-python-examples-for-testing-aiven-for-apache-kafka)
 - Other Sources:
-  - [kafka-python.readthedocs.io/](https://kafka-python.readthedocs.io/en/master/usage.html)
+  - [kafka-python.readthedocs.io](https://kafka-python.readthedocs.io/en/master/usage.html)
   - [Getting started with Aiven for Apache Kafka](https://help.aiven.io/en/articles/489572-getting-started-with-aiven-for-apache-kafka)
   - [Getting started with Aiven Kafka](https://aiven.io/blog/getting-started-with-aiven-kafka)
   - [Getting started with sqlalchemy](https://riptutorial.com/sqlalchemy)
