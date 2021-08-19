@@ -68,7 +68,7 @@ graph TB
 end
 ```
 
-![System Design](img/system_design.png)
+![System Design](static/img/system_design.png)
 
 ## Python Requirement
 
