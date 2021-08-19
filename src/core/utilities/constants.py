@@ -19,7 +19,8 @@ try:
     TABLE_NAME = config("PG_TABLE_NAME")
 
 except UndefinedValueError as error:
-    message = str(error)
-    sentence_index = message.find(". ")
-    print(f"Environment variable {message[0: sentence_index + 1]}")
+    MSG = str(error)
+    # Detect the end of first sentence.
+    INDEX = MSG.find(". ")
+    print(f"Environment variable {MSG[0: INDEX + 1]}")
     sys.exit(1)
